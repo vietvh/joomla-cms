@@ -152,7 +152,7 @@ if ($saveOrder)
 								$disabledLabel    = JText::_('JORDERINGDISABLED');
 								$disableClassName = 'inactive tip-top';
 							endif; ?>
-							<span class="sortable-handler <?php echo $disableClassName?>" title="<?php echo $disabledLabel?>">
+							<span class="sortable-handler <?php echo $disableClassName?>" title="<?php echo $disabledLabel?>" rel="tooltip">
 								<i class="icon-move"></i>
 							</span>
 							<input type="text" style="display:none"  name="order[]" size="5"
