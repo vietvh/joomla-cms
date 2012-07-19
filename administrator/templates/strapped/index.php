@@ -217,8 +217,6 @@ endif;
 	<jdoc:include type="modules" name="debug" style="none" />
 	<script>
 		(function($){
-			$('*[rel=tooltip]').tooltip()
-			$('.tip-bottom').tooltip({placement: "bottom"})
 			$('*[rel=popover]').popover()
 
 			// fix sub nav on scroll
