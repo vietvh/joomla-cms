@@ -89,13 +89,44 @@ function pagination_list_footer($list)
  */
 function pagination_list_render($list)
 {
+	// Calculate to display range of pages
+	$currentPage = 1;
+	$range = 1;
+	$step = 5;
+	foreach ($list['pages'] as $k => $page)
+	{
+		if (!$page['active'])
+		{
+			$currentPage = $k;
+		}
+	}
+	if ($currentPage >= $step)
+	{
+		if ($currentPage % $step == 0)
+		{
+			$range = ceil($currentPage / $step) + 1;
+		}
+		else
+		{
+			$range = ceil($currentPage / $step);
+		}
+	}
+
 	// Initialize variables
 	$html = '<ul class="pagination-list">';
 	$html .= $list['start']['data'];
 	$html .= $list['previous']['data'];
 
-	foreach($list['pages'] as $page)
+	foreach($list['pages'] as $k => $page)
 	{
+		if (in_array($k, range($range * $step - ($step + 1), $range * $step)))
+		{
+			if (($k % $step == 0 || $k == $range * $step - ($step + 1)) && $k != $currentPage && $k != $range * $step - $step)
+			{
+				$page['data'] = preg_replace('#(<a.*?>).*?(</a>)#', '$1...$2', $page['data']);
+			}
+		}
+
 		$html .= $page['data'];
 	}
 

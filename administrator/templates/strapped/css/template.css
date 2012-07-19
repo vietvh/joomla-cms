@@ -4885,6 +4885,11 @@ fieldset.radio.btn-group {
   width: 1px;
   overflow: hidden;
 }
+/* Pagination */
+.pagination-list.limit-box {
+  margin-top: 28px;
+  margin-left: 6px;
+}
 @font-face {
   font-family: 'IcoMoon';
   src: url('../../../../media/jui/fonts/IcoMoon.eot');
