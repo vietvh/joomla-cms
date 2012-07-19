@@ -12,11 +12,14 @@ defined('_JEXEC') or die;
 JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 JHtml::_('behavior.tooltip');
 JHtml::_('behavior.multiselect');
+JHtml::_('dropdown.init');
 
 $user		= JFactory::getUser();
 $userId		= $user->get('id');
 $listOrder	= $this->escape($this->state->get('list.ordering'));
 $listDirn	= $this->escape($this->state->get('list.direction'));
+$archived	= $this->state->get('filter.published') == 2 ? true : false;
+$trashed	= $this->state->get('filter.published') == -2 ? true : false;
 $saveOrder	= $listOrder == 'a.ordering';
 if ($saveOrder)
 {
@@ -164,24 +167,66 @@ if ($saveOrder)
 							<?php echo JHtml::_('contentadministrator.featured', $item->featured, $i, $canChange); ?>
 							<?php echo JHtml::_('jgrid.published', $item->state, $i, 'articles.', $canChange, 'cb', $item->publish_up, $item->publish_down); ?>
 						</td>
-						<td class="nowrap">
-							<?php if ($item->checked_out) : ?>
-								<?php echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'articles.', $canCheckin); ?>
-							<?php endif; ?>
-							<?php if ($item->language=='*'):?>
-								<?php $language = JText::alt('JALL', 'language'); ?>
-							<?php else:?>
-								<?php $language = $item->language_title ? $this->escape($item->language_title) : JText::_('JUNDEFINED'); ?>
-							<?php endif;?>
-							<?php if ($canEdit || $canEditOwn) : ?>
-								<a href="<?php echo JRoute::_('index.php?option=com_content&task=article.edit&id='.$item->id);?>" rel="popover" title="<?php echo JText::_('JDETAILS');?>" data-content="<?php echo JText::_('JFIELD_ALIAS_LABEL') . " " . $this->escape($item->alias) . "<br />\n" . JText::_('JGLOBAL_HITS') . " " . (int) $item->hits . " \n";?>" class="pop">
-									<?php echo $this->escape($item->title); ?></a>
-							<?php else : ?>
-								<span title="<?php echo JText::sprintf('JFIELD_ALIAS_LABEL', $this->escape($item->alias));?>"><?php echo $this->escape($item->title); ?></span>
-							<?php endif; ?>
-							<div class="small">
-								<?php echo JText::_('JCATEGORY') . ": " . $this->escape($item->category_title); ?>
+						<td class="nowrap has-context">
+							<div class="pull-left">
+								<?php if ($item->checked_out) : ?>
+									<?php echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'articles.', $canCheckin); ?>
+								<?php endif; ?>
+								<?php if ($item->language == '*'):?>
+									<?php $language = JText::alt('JALL', 'language'); ?>
+								<?php else:?>
+									<?php $language = $item->language_title ? $this->escape($item->language_title) : JText::_('JUNDEFINED'); ?>
+								<?php endif;?>
+								<?php if ($canEdit || $canEditOwn) : ?>
+									<a href="<?php echo JRoute::_('index.php?option=com_content&task=article.edit&id=' . $item->id);?>" rel="popover" title="<?php echo JText::_('JDETAILS');?>" data-content="<?php echo JText::_('JFIELD_ALIAS_LABEL') . " " . $this->escape($item->alias) . "<br />\n" . JText::_('JGLOBAL_HITS') . " " . (int) $item->hits . " \n";?>" class="pop">
+										<?php echo $this->escape($item->title); ?></a>
+								<?php else : ?>
+									<span title="<?php echo JText::sprintf('JFIELD_ALIAS_LABEL', $this->escape($item->alias));?>"><?php echo $this->escape($item->title); ?></span>
+								<?php endif; ?>
+								<div class="small">
+									<?php echo JText::_('JCATEGORY') . ": " . $this->escape($item->category_title); ?>
+								</div>
 							</div>
+							<div class="pull-left">
+								<?php
+									// Create dropdown items
+				 					JHtml::_('dropdown.edit', $item->id, 'article.');
+				 					JHtml::_('dropdown.divider');
+				 					if ($item->state) :
+				 						JHtml::_('dropdown.unpublish', 'cb' . $i, 'articles.');
+				 					else :
+				 						JHtml::_('dropdown.publish', 'cb' . $i, 'articles.');
+				 					endif;
+
+				 					if ($item->featured) :
+				 						JHtml::_('dropdown.unfeatured', 'cb' . $i, 'articles.');
+				 					else :
+				 						JHtml::_('dropdown.featured', 'cb' . $i, 'articles.');
+				 					endif;
+
+				 					JHtml::_('dropdown.divider');
+
+				 					if ($archived) :
+				 						JHtml::_('dropdown.unarchive', 'cb' . $i, 'articles.');
+				 					else :
+				 						JHtml::_('dropdown.archive', 'cb' . $i, 'articles.');
+				 					endif;
+
+				 					if ($item->checked_out) :
+				 						JHtml::_('dropdown.checkin', 'cb' . $i, 'articles.');
+				 					endif;
+
+				 					if($trashed) :
+				 						JHtml::_('dropdown.untrash', 'cb' . $i, 'articles.');
+				 					else :
+				 						JHtml::_('dropdown.trash', 'cb' . $i, 'articles.');
+				 					endif;
+
+				 					// render dropdown list
+				 					echo JHtml::_('dropdown.render');
+				 					?>
+							</div>
+
 						</td>
 						<td class="small">
 							<?php echo $this->escape($item->access_level); ?>
