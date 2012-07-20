@@ -88,6 +88,14 @@ if ($saveOrder)
 					<button class="btn tip" type="submit" rel="tooltip" title="<?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?>"><i class="icon-search"></i></button>
 					<button class="btn tip" type="button" onclick="document.id('filter_search').value='';this.form.submit();" rel="tooltip" title="<?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?>"><i class="icon-remove"></i></button>
 				</div>
+				<div class="pull-right" >								
+					<div class="pagination-list limit-box">
+						<?php echo $this->pagination->getLimitBox(); ?>
+					</div>
+				</div>	
+					<div class="pull-right">
+						<?php echo $this->pagination->getListFooter(); ?>
+				</div>
 			</div>
 			<div class="clearfix"> </div>
 
@@ -122,21 +130,7 @@ if ($saveOrder)
 							<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder); ?>
 						</th>
 					</tr>
-				</thead>
-				<tfoot>
-					<tr>
-						<td colspan="15">
-							<div class="pull-left">
-								<?php echo $this->pagination->getListFooter(); ?>
-							</div>
-							<div class="pull-left" >								
-								<div class="pagination-list limit-box">
-								<?php echo $this->pagination->getLimitBox(); ?>
-								</div>
-							</div>				
-						</td>
-					</tr>
-				</tfoot>
+				</thead>				
 				<tbody>
 				<?php foreach ($this->items as $i => $item) :
 					$item->max_ordering = 0; //??
