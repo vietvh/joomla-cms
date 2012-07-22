@@ -4910,6 +4910,7 @@ fieldset.radio.btn-group {
 .icon-user:before {
   content: "\22";
 }
+.icon-checkedout:before,
 .icon-lock:before,
 .icon-locked:before {
   content: "\23";
@@ -5284,6 +5285,7 @@ fieldset.radio.btn-group {
 .icon-file-remove:before {
   content: "\e017";
 }
+.icon-save-copy:before,
 .icon-copy:before {
   content: "\e018";
 }
