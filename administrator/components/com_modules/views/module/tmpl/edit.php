@@ -15,6 +15,10 @@ JHtml::_('behavior.formvalidation');
 JHtml::_('behavior.combobox');
 $hasContent = empty($this->item->module) || $this->item->module == 'custom' || $this->item->module == 'mod_custom';
 
+// Get Params Fieldsets
+$this->fieldsets = $this->form->getFieldsets('params');
+
+
 $script = "Joomla.submitbutton = function(task)
 	{
 			if (task == 'module.cancel' || document.formvalidator.isValid(document.id('module-form'))) {";
@@ -35,16 +39,23 @@ JFactory::getDocument()->addScriptDeclaration($script);
 <form action="<?php echo JRoute::_('index.php?option=com_modules&layout=edit&id='.(int) $this->item->id); ?>" method="post" name="adminForm" id="module-form" class="form-validate form-horizontal">
 	<fieldset>
 		<ul class="nav nav-tabs">
-		  <li class="active"><a href="#details" data-toggle="tab"><?php echo JText::_('JDETAILS');?></a></li>
-		  <li><a href="#options" data-toggle="tab"><?php echo JText::_('COM_MODULES_BASIC_FIELDSET_LABEL');?></a></li>
-		  <?php if ($hasContent) : ?>
-		  	<li><a href="#custom" data-toggle="tab"><?php echo JText::_('COM_MODULES_CUSTOM_OUTPUT');?></a></li>
-		  <?php endif; ?>
-		  <?php if ($this->item->client_id == 0) :?>
-			  <li><a href="#assignment" data-toggle="tab"><?php echo JText::_('COM_MODULES_MENU_ASSIGNMENT');?></a></li>
-		  <?php endif; ?>
+			<li class="active"><a href="#details" data-toggle="tab"><?php echo JText::_('JDETAILS');?></a></li>
+
+			<?php if (count($this->fieldsets)) : ?>
+				<?php foreach ($this->fieldsets as $fieldset) : ?>
+					<?php $label = !empty($fieldset->label) ? JText::_($fieldset->label) : JText::_('COM_MODULES_'.$fieldset->name.'_FIELDSET_LABEL');?>
+					<li><a href="#options-<?php echo $fieldset->name; ?>" data-toggle="tab"><?php echo $label ?></a></li>
+				<?php endforeach; ?>
+			<?php endif; ?>
+
+			<?php if ($hasContent) : ?>
+				<li><a href="#custom" data-toggle="tab"><?php echo JText::_('COM_MODULES_CUSTOM_OUTPUT');?></a></li>
+			<?php endif; ?>
+			<?php if ($this->item->client_id == 0) :?>
+				<li><a href="#assignment" data-toggle="tab"><?php echo JText::_('COM_MODULES_MENU_ASSIGNMENT');?></a></li>
+			<?php endif; ?>
 		</ul>
-		
+
 		<div class="tab-content">
 		  <div class="tab-pane active" id="details">
 		  	<div class="row-fluid">
@@ -82,7 +93,7 @@ JFactory::getDocument()->addScriptDeclaration($script);
 		  						<div class="controls">
 		  							<?php echo $this->loadTemplate('positions'); ?>
 		  						</div>
-		  				</div>	  	
+		  				</div>
 		  				<div class="control-group">
 		  					<div class="control-label">
 		  						<?php echo $this->form->getLabel('access'); ?>
@@ -108,7 +119,7 @@ JFactory::getDocument()->addScriptDeclaration($script);
 		  							<?php echo $this->form->getInput('publish_up'); ?>
 		  						</div>
 		  					</div>
-		  			
+
 		  					<div class="control-group">
 		  						<div class="control-label">
 		  							<?php echo $this->form->getLabel('publish_down'); ?>
@@ -118,7 +129,7 @@ JFactory::getDocument()->addScriptDeclaration($script);
 		  						</div>
 		  					</div>
 		  				<?php endif; ?>
-		  			
+
 		  				<div class="control-group">
 		  					<div class="control-label">
 		  						<?php echo $this->form->getLabel('language'); ?>
@@ -135,7 +146,7 @@ JFactory::getDocument()->addScriptDeclaration($script);
 		  						<?php echo $this->form->getInput('note'); ?>
 		  					</div>
 		  				</div>
-		  				
+
 		  		</div>
 		  		<div class="span6">
 		  			<?php if ($this->item->xml) : ?>
@@ -153,7 +164,7 @@ JFactory::getDocument()->addScriptDeclaration($script);
 		  					</div>
 		  					<hr />
 		  					<div>
-		  						<span class="label"><?php echo $this->item->client_id == 0 ? JText::_('JSITE') : JText::_('JADMINISTRATOR'); ?></span> / <span class="label"><?php if ($this->item->xml) echo ($text = (string) $this->item->xml->name) ? JText::_($text) : $this->item->module;else echo JText::_('COM_MODULES_ERR_XML');?></span> 
+		  						<span class="label"><?php echo $this->item->client_id == 0 ? JText::_('JSITE') : JText::_('JADMINISTRATOR'); ?></span> / <span class="label"><?php if ($this->item->xml) echo ($text = (string) $this->item->xml->name) ? JText::_($text) : $this->item->module;else echo JText::_('COM_MODULES_ERR_XML');?></span>
 		  					</div>
 		  				</blockquote>
 		  				<?php endif; ?>
@@ -163,9 +174,9 @@ JFactory::getDocument()->addScriptDeclaration($script);
 		  		</div>
 		  	</div>
 		  </div>
-		  <div class="tab-pane" id="options">
-		  	<?php echo $this->loadTemplate('options'); ?>
-		  </div>
+
+		  <?php echo $this->loadTemplate('options'); ?>
+
 		  <?php if ($hasContent) : ?>
 		  	<div class="tab-pane" id="custom">
 		  		<?php echo $this->form->getInput('content'); ?>
@@ -177,7 +188,7 @@ JFactory::getDocument()->addScriptDeclaration($script);
 			  </div>
 		  <?php endif; ?>
 		</div>
-		  
+
 	<input type="hidden" name="task" value="" />
 	<?php echo JHtml::_('form.token'); ?>
 </fieldset>
