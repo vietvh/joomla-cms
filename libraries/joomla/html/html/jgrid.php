@@ -89,7 +89,7 @@ abstract class JHtmlJGrid
 			$html[] = ' title="' . addslashes(htmlspecialchars($translate ? JText::_($inactive_title) : $inactive_title, ENT_COMPAT, 'UTF-8')) . '">';
 			if ($active_class == "protected")
 			{
-				$html[] = '<span class="btn btn-micro btn-warning">';
+				$html[] = '<span class="btn disabled btn-micro btn-warning">';
 				$html[] = '<i class="icon-lock icon-white"></i>';
 				$html[] = '</span>';
 			}
