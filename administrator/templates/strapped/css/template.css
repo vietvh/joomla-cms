@@ -5268,6 +5268,7 @@ fieldset.radio.btn-group {
 .icon-arrow-left-3:before {
   content: "\e012";
 }
+.icon-print:before,
 .icon-printer:before {
   content: "\e013";
 }
@@ -5633,6 +5634,11 @@ body .navbar-fixed-top {
 .btn-info.active,
 .btn-inverse.active {
   color: rgba(255, 255, 255, 0.95);
+}
+/* Chosen Max Width */
+.chzn-container,
+.chzn-drop {
+  max-width: 100% !important;
 }
 @media (min-width: 980px) {
   body {
