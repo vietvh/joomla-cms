@@ -5592,10 +5592,6 @@ body .navbar-fixed-top {
 #status p {
   margin: 0px;
 }
-#status i {
-  opacity: 0.4;
-  filter: alpha(opacity=40);
-}
 #status a {
   color: #999999;
 }
