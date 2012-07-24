@@ -100,12 +100,12 @@ endif;
 								<?php endif;?>
 								<?php if($user->authorise('core.manage', 'com_cache')):?>
 									 <li><a href="<?php echo $this->baseurl; ?>/index.php?option=com_cache"><?php echo JText::_('TPL_STRAPPED_CLEAR_CACHE');?></a></li>
+									 <li>
+									 <li><a href="<?php echo $this->baseurl; ?>/index.php?option=com_cache&view=purge"><?php echo JText::_('TPL_STRAPPED_PURGE_EXPIRED_CACHE');?></a></li>
+									 <li>
 								<?php endif;?>
 								<?php if($user->authorise('core.admin', 'com_checkin')):?>
 									<li><a href="<?php echo $this->baseurl; ?>/index.php?option=com_checkin"><?php echo JText::_('TPL_STRAPPED_GLOBAL_CHECK_IN');?></a></li>
-								<?php endif;?>
-								<?php if($user->authorise('core.manage', 'com_installer')):?>
-									 <li><a href="<?php echo $this->baseurl; ?>/index.php?option=com_installer"><?php echo JText::_('TPL_STRAPPED_INSTALLER');?></a></li>
 								<?php endif;?>
 							</ul>
 						</li>
