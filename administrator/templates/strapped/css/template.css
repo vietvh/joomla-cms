@@ -4981,6 +4981,7 @@ fieldset.radio.btn-group {
 .icon-cogs:before {
   content: "\37";
 }
+.icon-options:before,
 .icon-cog:before {
   content: "\38";
 }
