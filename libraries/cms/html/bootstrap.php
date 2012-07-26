@@ -1,6 +1,6 @@
 <?php
 /**
- * @package     Joomla.Platform
+ * @package     Joomla.Libraries
  * @subpackage  HTML
  *
  * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
@@ -12,14 +12,15 @@ defined('JPATH_PLATFORM') or die;
 /**
  * Utility class for Bootstrap elements.
  *
- * @package     Joomla.Platform
+ * @package     Joomla.Libraries
  * @subpackage  HTML
- * @since       11.2
+ * @since       3.0
  */
 abstract class JHtmlBootstrap
 {
 	/**
-	 * @var  array  Array containing information for loaded files
+	 * @var    array  Array containing information for loaded files
+	 * @since  3.0
 	 */
 	protected static $loaded = array();
 
@@ -42,6 +43,8 @@ abstract class JHtmlBootstrap
 	 *                                                           Object structure is: delay: { show: 500, hide: 100 }
 	 *
 	 * @return  void
+	 *
+	 * @since   3.0
 	 */
 	public static function loadtooltip($selector = 'content', $params = array())
 	{
@@ -83,6 +86,8 @@ abstract class JHtmlBootstrap
 	 * @param   string  $class    CSS class for the tool tip
 	 *
 	 * @return  string  HTML for the tooltip
+	 *
+	 * @since   3.0
 	 */
 	public static function tooltip($tooltip, $text = '', $href = '#', $class = '')
 	{
@@ -101,6 +106,8 @@ abstract class JHtmlBootstrap
 	 *                             - active  string    Sets the active slide during load
 	 *
 	 * @return  string  HTML for the accordian
+	 *
+	 * @since   3.0
 	 */
 	public static function startAccordion($selector = 'myAccordian', $params = array())
 	{
@@ -136,7 +143,7 @@ abstract class JHtmlBootstrap
 	 *
 	 * @return  string  HTML to close the accordian
 	 *
-	 * @since   11.1
+	 * @since   3.0
 	 */
 	public static function endAccordion()
 	{
@@ -151,6 +158,8 @@ abstract class JHtmlBootstrap
 	 * @param   string  $id        Identifier of the slide.
 	 *
 	 * @return  string  HTML to add the slide
+	 *
+	 * @since   3.0
 	 */
 	public static function addSlide($selector, $text, $id)
 	{
@@ -172,6 +181,8 @@ abstract class JHtmlBootstrap
 	 * Close the current slide
 	 *
 	 * @return  string  HTML to close the slide
+	 *
+	 * @since   3.0
 	 */
 	public static function endSlide()
 	{
@@ -187,7 +198,7 @@ abstract class JHtmlBootstrap
 	 *
 	 * @return  string
 	 *
-	 * @since   11.1
+	 * @since   3.0
 	 */
 	public static function startPane($selector = 'myTab', $params = array())
 	{
@@ -224,7 +235,7 @@ abstract class JHtmlBootstrap
 	 *
 	 * @return  string  HTML to close the pane
 	 *
-	 * @since   11.1
+	 * @since   3.0
 	 */
 	public static function endPane()
 	{
@@ -239,7 +250,7 @@ abstract class JHtmlBootstrap
 	 *
 	 * @return  string  HTML to start a new panel
 	 *
-	 * @since   11.1
+	 * @since   3.0
 	 */
 	public static function addPanel($selector, $id)
 	{
@@ -253,7 +264,7 @@ abstract class JHtmlBootstrap
 	 *
 	 * @return  string  HTML to close the pane
 	 *
-	 * @since   11.1
+	 * @since   3.0
 	 */
 	public static function endPanel()
 	{
@@ -267,7 +278,7 @@ abstract class JHtmlBootstrap
 	 *
 	 * @return  string  JavaScript object notation representation of the array
 	 *
-	 * @since   11.1
+	 * @since   3.0
 	 */
 	protected static function _getJSObject($array = array())
 	{
