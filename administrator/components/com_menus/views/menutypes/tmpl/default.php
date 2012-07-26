@@ -11,11 +11,6 @@ defined('_JEXEC') or die;
 
 // Checking if loaded via index.php or component.php
 $tmpl = JRequest::getCmd('tmpl', '');
-
-// Import Bootstrap Library
-jimport('joomla.html.html.bootstrap');
-
-
 ?>
 
 <script type="text/javascript">
@@ -33,7 +28,7 @@ jimport('joomla.html.html.bootstrap');
 <h4 class="modal-title"><?php echo JText::_('COM_MENUS_TYPE_CHOOSE'); ?></h4>
 <hr />
 <?php echo JHtml::_('bootstrap.startAccordion', 'collapseTypes', array('active' => 'slide1')); ?>
-	<?php 
+	<?php
 		$i = 0;
 		foreach ($this->types as $name => $list): ?>
 		<?php echo JHtml::_('bootstrap.addSlide', 'collapseTypes', JText::_($name), 'collapse' . $i++); ?>
