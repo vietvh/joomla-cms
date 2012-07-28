@@ -4875,6 +4875,16 @@ fieldset.radio.btn-group {
 .input-append > .add-on {
   vertical-align: top;
 }
+/* Accessible Hidden Elements (good for hidden labels and such) */
+.element-invisible {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
 @font-face {
   font-family: 'IcoMoon';
   src: url('../../../../media/jui/fonts/IcoMoon.eot');
