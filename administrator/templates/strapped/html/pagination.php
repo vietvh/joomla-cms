@@ -78,7 +78,7 @@ function pagination_list_render($list)
 {
 	// Initialize variables
 	$html = "<ul class=\"pagination-list\">";
-	$html .= '<li><a>&larr;</a></li>'.$list['start']['data'];
+	$html .= $list['start']['data'];
 	$html .= $list['previous']['data'];
 
 	foreach( $list['pages'] as $page )
@@ -94,11 +94,10 @@ function pagination_list_render($list)
 
 	$html .= $list['next']['data'];
 	$html .= $list['end']['data'];
-	$html .= '<li><a>&rarr;</a></li>';
 
 	$html .= "</ul>";
 	return $html;
-	
+
 }
 function pagination_item_active(&$item)
 {
