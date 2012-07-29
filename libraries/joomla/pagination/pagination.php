@@ -696,6 +696,11 @@ class JPagination extends JObject
 			{
 				$data->pages[$i]->base = $offset;
 				$data->pages[$i]->link = JRoute::_($params . '&' . $this->prefix . 'limitstart=' . $offset);
+				$data->pages[$i]->active = false;
+			}
+			elseif ($i = $this->get('pages.current'))
+			{
+				$data->pages[$i]->active = true;
 			}
 		}
 		return $data;
