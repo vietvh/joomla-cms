@@ -26,7 +26,17 @@ if ($saveOrder)
 	$saveOrderingUrl = 'index.php?option=com_content&task=articles.saveOrderAjax&tmpl=component';
 	JHtml::_('sortablelist.sortable', 'articleList', 'adminForm', strtolower($listDirn), $saveOrderingUrl);
 }
+
+$sortFields = $this->getSortFields();
 ?>
+<script type="text/javascript">
+	Joomla.orderTable = function() {
+		table = document.getElementById("sortTable")
+		order = table.options[table.selectedIndex].value;
+		Joomla.tableOrdering(order, '<?php echo $listDirn; ?>', '');
+	}
+</script>
+
 <form action="<?php echo JRoute::_('index.php?option=com_content&view=articles');?>" method="post" name="adminForm" id="adminForm">
 	<div class="row-fluid">
 		<!-- Begin Sidebar -->
@@ -88,13 +98,19 @@ if ($saveOrder)
 					<button class="btn tip" type="submit" rel="tooltip" title="<?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?>"><i class="icon-search"></i></button>
 					<button class="btn tip" type="button" onclick="document.id('filter_search').value='';this.form.submit();" rel="tooltip" title="<?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?>"><i class="icon-remove"></i></button>
 				</div>
-				<div class="pull-right" >								
+				<div class="btn-group pull-left">
+					<select name="sortTable" id="sortTable" class="span12" onchange="Joomla.orderTable()">
+						<option value=""><?php echo JText::_('JGLOBAL_SORT_BY');?></option>
+						<?php echo JHtml::_('select.options', $sortFields, 'value', 'text', $listOrder);?>
+					</select>
+				</div>
+				<div class="pull-right">
 					<div class="pagination-list limit-box">
 						<?php echo $this->pagination->getLimitBox(); ?>
 					</div>
-				</div>	
-					<div class="pull-right">
-						<?php echo $this->pagination->getListFooter(); ?>
+				</div>
+				<div class="pull-right">
+					<?php echo $this->pagination->getListFooter(); ?>
 				</div>
 			</div>
 			<div class="clearfix"> </div>
@@ -103,7 +119,7 @@ if ($saveOrder)
 				<thead>
 					<tr>
 						<th width="1%" class="center" nowrap="nowrap">
-							<?php echo JHtml::_('grid.sort',  '<i class="icon-menu-2 hasTip" title="' . JText::_('JGRID_HEADING_ORDERING') . '"></i>', 'a.ordering', $listDirn, $listOrder); ?>
+							<i class="icon-menu-2 hasTip" title="<?php echo JText::_('JGRID_HEADING_ORDERING'); ?>"></i>
 						</th>
 						<th width="1%">
 							<input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
@@ -112,25 +128,25 @@ if ($saveOrder)
 							<?php echo JText::_('JSTATUS'); ?>
 						</th>
 						<th>
-							<?php echo JHtml::_('grid.sort', 'JGLOBAL_TITLE', 'a.title', $listDirn, $listOrder); ?>
+							<?php echo JText::_('JGLOBAL_TITLE'); ?>
 						</th>
 						<th width="10%">
-							<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ACCESS', 'access_level', $listDirn, $listOrder); ?>
+							<?php echo JText::_('JGRID_HEADING_ACCESS'); ?>
 						</th>
 						<th width="10%">
-							<?php echo JHtml::_('grid.sort', 'JAUTHOR', 'a.created_by', $listDirn, $listOrder); ?>
+							<?php echo JText::_('JAUTHOR'); ?>
 						</th>
 						<th width="5%">
-							<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_LANGUAGE', 'language', $listDirn, $listOrder); ?>
+							<?php echo JText::_('JGRID_HEADING_LANGUAGE'); ?>
 						</th>
 						<th width="10%">
-							<?php echo JHtml::_('grid.sort', 'JDATE', 'a.created', $listDirn, $listOrder); ?>
+							<?php echo JText::_('JDATE'); ?>
 						</th>
 						<th width="1%" class="nowrap">
-							<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder); ?>
+							<?php echo JText::_('JGRID_HEADING_ID'); ?>
 						</th>
 					</tr>
-				</thead>				
+				</thead>
 				<tbody>
 				<?php foreach ($this->items as $i => $item) :
 					$item->max_ordering = 0; //??
@@ -219,7 +235,7 @@ if ($saveOrder)
 				 						JHtml::_('dropdown.checkin', 'cb' . $i, 'articles.');
 				 					endif;
 
-				 					if($trashed) :
+				 					if ($trashed) :
 				 						JHtml::_('dropdown.untrash', 'cb' . $i, 'articles.');
 				 					else :
 				 						JHtml::_('dropdown.trash', 'cb' . $i, 'articles.');
