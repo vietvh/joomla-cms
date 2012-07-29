@@ -102,11 +102,11 @@ if ($saveOrder)
 			<table class="table table-striped" id="articleList">
 				<thead>
 					<tr>
+						<th width="1%" class="center" nowrap="nowrap">
+							<?php echo JHtml::_('grid.sort',  '<i class="icon-menu-2 hasTip" title="' . JText::_('JGRID_HEADING_ORDERING') . '"></i>', 'a.ordering', $listDirn, $listOrder); ?>
+						</th>
 						<th width="1%">
 							<input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
-						</th>
-						<th width="5%" class="center" style="min-width:70px">
-							<?php echo JHtml::_('grid.sort',  'JGRID_HEADING_ORDERING', 'a.ordering', $listDirn, $listOrder); ?>
 						</th>
 						<th width="5%" style="min-width:55px" class="center">
 							<?php echo JText::_('JSTATUS'); ?>
@@ -142,9 +142,6 @@ if ($saveOrder)
 					$canChange	= $user->authorise('core.edit.state',	'com_content.article.'.$item->id) && $canCheckin;
 					?>
 					<tr class="row<?php echo $i % 2; ?>" sortable-group-id="<?php echo $item->catid?>">
-						<td class="center">
-							<?php echo JHtml::_('grid.id', $i, $item->id); ?>
-						</td>
 						<td class="order nowrap center">
 						<?php if ($canChange) :
 							$disableClassName = '';
@@ -154,19 +151,24 @@ if ($saveOrder)
 								$disableClassName = 'inactive tip-top';
 							endif; ?>
 							<span class="sortable-handler <?php echo $disableClassName?>" title="<?php echo $disabledLabel?>" rel="tooltip">
-								<i class="icon-move"></i>
+								<i class="icon-menu"></i>
 							</span>
 							<input type="text" style="display:none"  name="order[]" size="5"
 							value="<?php echo $item->ordering;?>" class="width-20 text-area-order " />
 						<?php else : ?>
 							<span class="sortable-handler inactive" >
-								<i class="icon-move"></i>
+								<i class="icon-menu"></i>
 							</span>
 						<?php endif; ?>
 						</td>
 						<td class="center">
-							<?php echo JHtml::_('contentadministrator.featured', $item->featured, $i, $canChange); ?>
-							<?php echo JHtml::_('jgrid.published', $item->state, $i, 'articles.', $canChange, 'cb', $item->publish_up, $item->publish_down); ?>
+							<?php echo JHtml::_('grid.id', $i, $item->id); ?>
+						</td>
+						<td class="center">
+							<div class="btn-group">
+								<?php echo JHtml::_('jgrid.published', $item->state, $i, 'articles.', $canChange, 'cb', $item->publish_up, $item->publish_down); ?>
+								<?php echo JHtml::_('contentadministrator.featured', $item->featured, $i, $canChange); ?>
+							</div>
 						</td>
 						<td class="nowrap has-context">
 							<div class="pull-left">
@@ -179,7 +181,7 @@ if ($saveOrder)
 									<?php $language = $item->language_title ? $this->escape($item->language_title) : JText::_('JUNDEFINED'); ?>
 								<?php endif;?>
 								<?php if ($canEdit || $canEditOwn) : ?>
-									<a href="<?php echo JRoute::_('index.php?option=com_content&task=article.edit&id=' . $item->id);?>" rel="popover" title="<?php echo JText::_('JDETAILS');?>" data-content="<?php echo JText::_('JFIELD_ALIAS_LABEL') . " " . $this->escape($item->alias) . "<br />\n" . JText::_('JGLOBAL_HITS') . " " . (int) $item->hits . " \n";?>" class="pop">
+									<a href="<?php echo JRoute::_('index.php?option=com_content&task=article.edit&id=' . $item->id);?>" title="<?php echo JText::_('JACTION_EDIT');?>">
 										<?php echo $this->escape($item->title); ?></a>
 								<?php else : ?>
 									<span title="<?php echo JText::sprintf('JFIELD_ALIAS_LABEL', $this->escape($item->alias));?>"><?php echo $this->escape($item->title); ?></span>
