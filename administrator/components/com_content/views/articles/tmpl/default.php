@@ -31,9 +31,11 @@ $sortFields = $this->getSortFields();
 ?>
 <script type="text/javascript">
 	Joomla.orderTable = function() {
-		table = document.getElementById("sortTable")
+		table = document.getElementById("sortTable");
+		direction = document.getElementById("directionTable");
 		order = table.options[table.selectedIndex].value;
-		Joomla.tableOrdering(order, '<?php echo $listDirn; ?>', '');
+		dirn = direction.options[direction.selectedIndex].value;
+		Joomla.tableOrdering(order, dirn, '');
 	}
 </script>
 
@@ -102,6 +104,13 @@ $sortFields = $this->getSortFields();
 					<select name="sortTable" id="sortTable" class="span12" onchange="Joomla.orderTable()">
 						<option value=""><?php echo JText::_('JGLOBAL_SORT_BY');?></option>
 						<?php echo JHtml::_('select.options', $sortFields, 'value', 'text', $listOrder);?>
+					</select>
+				</div>
+				<div class="btn-group pull-left">
+					<select name="directionTable" id="directionTable" class="span12" onchange="Joomla.orderTable()">
+						<option value=""><?php echo JText::_('JFIELD_ORDERING_DESC');?></option>
+						<option value="asc" <?php if ($listDirn == 'asc') echo 'selected="selected"'; ?>><?php echo JText::_('JGLOBAL_ORDER_ASCENDING');?></option>
+						<option value="desc" <?php if ($listDirn == 'desc') echo 'selected="selected"'; ?>><?php echo JText::_('JGLOBAL_ORDER_DESCENDING');?></option>
 					</select>
 				</div>
 				<div class="pull-right">
