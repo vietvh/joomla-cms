@@ -104,26 +104,21 @@ $sortFields = $this->getSortFields();
 					<button class="btn tip" type="submit" rel="tooltip" title="<?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?>"><i class="icon-search"></i></button>
 					<button class="btn tip" type="button" onclick="document.id('filter_search').value='';this.form.submit();" rel="tooltip" title="<?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?>"><i class="icon-remove"></i></button>
 				</div>
-				<div class="btn-group pull-left">
-					<select name="sortTable" id="sortTable" class="span12" onchange="Joomla.orderTable()">
-						<option value=""><?php echo JText::_('JGLOBAL_SORT_BY');?></option>
-						<?php echo JHtml::_('select.options', $sortFields, 'value', 'text', $listOrder);?>
-					</select>
+				<div class="btn-group pull-right">
+					<?php echo $this->pagination->getLimitBox(); ?>
 				</div>
-				<div class="btn-group pull-left">
-					<select name="directionTable" id="directionTable" class="span12" onchange="Joomla.orderTable()">
+				<div class="btn-group pull-right">
+					<select name="directionTable" id="directionTable" class="input-small" onchange="Joomla.orderTable()">
 						<option value=""><?php echo JText::_('JFIELD_ORDERING_DESC');?></option>
 						<option value="asc" <?php if ($listDirn == 'asc') echo 'selected="selected"'; ?>><?php echo JText::_('JGLOBAL_ORDER_ASCENDING');?></option>
 						<option value="desc" <?php if ($listDirn == 'desc') echo 'selected="selected"'; ?>><?php echo JText::_('JGLOBAL_ORDER_DESCENDING');?></option>
 					</select>
 				</div>
-				<div class="pull-right">
-					<div class="pagination-list limit-box">
-						<?php echo $this->pagination->getLimitBox(); ?>
-					</div>
-				</div>
-				<div class="pull-right">
-					<?php echo $this->pagination->getListFooter(); ?>
+				<div class="btn-group pull-right">
+					<select name="sortTable" id="sortTable" class="input-medium" onchange="Joomla.orderTable()">
+						<option value=""><?php echo JText::_('JGLOBAL_SORT_BY');?></option>
+						<?php echo JHtml::_('select.options', $sortFields, 'value', 'text', $listOrder);?>
+					</select>
 				</div>
 			</div>
 			<div class="clearfix"> </div>
@@ -283,7 +278,7 @@ $sortFields = $this->getSortFields();
 					<?php endforeach; ?>
 				</tbody>
 			</table>
-
+			<?php echo $this->pagination->getListFooter(); ?>
 			<?php //Load the batch processing form. ?>
 			<?php echo $this->loadTemplate('batch'); ?>
 
