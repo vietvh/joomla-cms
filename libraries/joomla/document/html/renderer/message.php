@@ -31,8 +31,35 @@ class JDocumentRendererMessage extends JDocumentRenderer
 	 */
 	public function render($name, $params = array (), $content = null)
 	{
+		$msgList 	= $this->getData();
+		$buffer 	= null;
+		$app 		= JFactory::getApplication();
+		$chromePath = JPATH_THEMES . '/' . $app->getTemplate() . '/html/message.php';
+		$itemOverride = false;
+
+		if (file_exists($chromePath))
+		{
+			include_once $chromePath;
+			if (function_exists('renderMessage'))
+			{
+				$itemOverride = true;
+			}
+		}
+
+		$buffer = ($itemOverride) ? renderMessage($msgList) : $this->renderDefaultMessage($msgList);
+
+		return $buffer;
+	}
+	/**
+	 * Renders the error stack and returns the results as a string
+	 *
+	 * @return  string  The output of the script
+	 *
+	 * @since   11.1
+	 */
+	private function getData()
+	{
 		// Initialise variables.
-		$buffer = null;
 		$lists = null;
 
 		// Get the message queue
@@ -50,31 +77,39 @@ class JDocumentRendererMessage extends JDocumentRenderer
 			}
 		}
 
+		return $lists;
+	}
+
+	private function renderDefaultMessage($msgList)
+	{
 		// Build the return string
-		$buffer .= "\n<div id=\"system-message-container\">";
+		$buffer 	= null;
+		$buffer    .= "\n<div id=\"system-message-container\">";
 
 		// If messages exist render them
-		if (is_array($lists))
+		if (is_array($msgList))
 		{
-			$buffer .= "\n<div id=\"system-message\" class=\"alert alert-" . $msg['type'] . "\">";
-			$buffer .= "<a class=\"close\" data-dismiss=\"alert\">×</a>";
-			foreach ($lists as $type => $msgs)
+			$buffer .= "\n<dl id=\"system-message\">";
+			foreach ($msgList as $type => $msgs)
 			{
 				if (count($msgs))
 				{
-					$buffer .= "\n<h4 class=\"alert-heading\">" . JText::_($type) . "</h4>";
-					$buffer .= "\n<div>";
+					$buffer .= "\n<dt class=\"" . strtolower($type) . "\">" . JText::_($type) . "</dt>";
+					$buffer .= "\n<dd class=\"" . strtolower($type) . " message\">";
+					$buffer .= "\n\t<ul>";
 					foreach ($msgs as $msg)
 					{
-						$buffer .= "\n\t\t<p>" . $msg . "</p>";
+						$buffer .= "\n\t\t<li>" . $msg . "</li>";
 					}
-					$buffer .= "\n</div>";
+					$buffer .= "\n\t</ul>";
+					$buffer .= "\n</dd>";
 				}
 			}
-			$buffer .= "\n</div>";
+			$buffer .= "\n</dl>";
 		}
 
 		$buffer .= "\n</div>";
+
 		return $buffer;
 	}
 }

@@ -50,7 +50,7 @@ var Installation = new Class({
 			onSuccess: function(r) {
 				Joomla.replaceTokens(r.token);
 				if (r.messages) {
-					Joomla.renderMessages(r.messages);
+					JoomlaCMS.renderMessages(r.messages);
 				}
 				var lang = $$('html').getProperty('lang')[0];
 				if (lang.toLowerCase() === r.lang.toLowerCase()) {

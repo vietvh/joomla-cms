@@ -33,11 +33,16 @@ JHtml::_('script', 'installation/template/js/installation.js', true, false, fals
 JText::script('INSTL_PROCESS_BUSY');
 JText::script('INSTL_SITE_SAMPLE_LOADED');
 JText::script('INSTL_FTP_SETTINGS_CORRECT');
+JText::script('ERROR');
+JText::script('MESSAGE');
+JText::script('NOTICE');
+JText::script('WARNING');
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
 	<head>
 		<script src="<?php echo JURI::root();?>media/jui/js/jquery.js"></script>
+		<script src="<?php echo JURI::root();?>media/cms/js/core.js"></script>
 		<script src="<?php echo JURI::root();?>media/jui/js/bootstrap.min.js"></script>
 		<script src="<?php echo JURI::root();?>media/jui/js/chosen.jquery.min.js"></script>
 		<script type="text/javascript">
