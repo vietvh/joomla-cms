@@ -61,32 +61,38 @@ $sortFields = $this->getSortFields();
 				<hr />
 				<div class="filter-select">
 					<h4 class="page-header"><?php echo JText::_('JSEARCH_FILTER_LABEL');?></h4>
-					<select name="filter_published" class="span12 small" onchange="this.form.submit()">
+					<label for="filter_published" class="element-invisible"><?php echo JText::_('JOPTION_SELECT_PUBLISHED');?></label>
+					<select name="filter_published" id="filter_published" class="span12 small" onchange="this.form.submit()">
 						<option value=""><?php echo JText::_('JOPTION_SELECT_PUBLISHED');?></option>
 						<?php echo JHtml::_('select.options', JHtml::_('jgrid.publishedOptions'), 'value', 'text', $this->state->get('filter.published'), true);?>
 					</select>
 					<hr class="hr-condensed" />
-					<select name="filter_category_id" class="span12 small" onchange="this.form.submit()">
+					<label for="filter_category_id" class="element-invisible"><?php echo JText::_('JOPTION_SELECT_CATEGORY');?></label>
+					<select name="filter_category_id" id="filter_category_id" class="span12 small" onchange="this.form.submit()">
 						<option value=""><?php echo JText::_('JOPTION_SELECT_CATEGORY');?></option>
 						<?php echo JHtml::_('select.options', JHtml::_('category.options', 'com_content'), 'value', 'text', $this->state->get('filter.category_id'));?>
 					</select>
 					<hr class="hr-condensed" />
-					<select name="filter_level" class="span12 small" onchange="this.form.submit()">
+					<label for="filter_level" class="element-invisible"><?php echo JText::_('JOPTION_SELECT_MAX_LEVELS');?></label>
+					<select name="filter_level" id="filter_level" class="span12 small" onchange="this.form.submit()">
 						<option value=""><?php echo JText::_('JOPTION_SELECT_MAX_LEVELS');?></option>
 						<?php echo JHtml::_('select.options', $this->f_levels, 'value', 'text', $this->state->get('filter.level'));?>
 					</select>
 					<hr class="hr-condensed" />
-					<select name="filter_access" class="span12 small" onchange="this.form.submit()">
+					<label for="filter_access" class="element-invisible"><?php echo JText::_('JOPTION_SELECT_ACCESS');?></label>
+					<select name="filter_access" id="filter_access" class="span12 small" onchange="this.form.submit()">
 						<option value=""><?php echo JText::_('JOPTION_SELECT_ACCESS');?></option>
 						<?php echo JHtml::_('select.options', JHtml::_('access.assetgroups'), 'value', 'text', $this->state->get('filter.access'));?>
 					</select>
 					<hr class="hr-condensed" />
-					<select name="filter_author_id" class="span12 small" onchange="this.form.submit()">
+					<label for="filter_author_id" class="element-invisible"><?php echo JText::_('JOPTION_SELECT_AUTHOR');?></label>
+					<select name="filter_author_id" id="filter_author_id" class="span12 small" onchange="this.form.submit()">
 						<option value=""><?php echo JText::_('JOPTION_SELECT_AUTHOR');?></option>
 						<?php echo JHtml::_('select.options', $this->authors, 'value', 'text', $this->state->get('filter.author_id'));?>
 					</select>
 					<hr class="hr-condensed" />
-					<select name="filter_language" class="span12 small" onchange="this.form.submit()">
+					<label for="filter_language" class="element-invisible"><?php echo JText::_('JOPTION_SELECT_LANGUAGE');?></label>
+					<select name="filter_language" id="filter_language" class="span12 small" onchange="this.form.submit()">
 						<option value=""><?php echo JText::_('JOPTION_SELECT_LANGUAGE');?></option>
 						<?php echo JHtml::_('select.options', JHtml::_('contentlanguage.existing', true, true), 'value', 'text', $this->state->get('filter.language'));?>
 					</select>
@@ -98,6 +104,7 @@ $sortFields = $this->getSortFields();
 		<div class="span10">
 			<div id="filter-bar" class="btn-toolbar">
 				<div class="filter-search btn-group pull-left">
+					<label for="filter_search" class="element-invisible"><?php echo JText::_('COM_CONTENT_FILTER_SEARCH_DESC');?></label>
 					<input type="text" name="filter_search" placeholder="<?php echo JText::_('COM_CONTENT_FILTER_SEARCH_DESC'); ?>" id="filter_search" value="<?php echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo JText::_('COM_CONTENT_FILTER_SEARCH_DESC'); ?>" />
 				</div>
 				<div class="btn-group pull-left">
@@ -105,9 +112,11 @@ $sortFields = $this->getSortFields();
 					<button class="btn tip" type="button" onclick="document.id('filter_search').value='';this.form.submit();" rel="tooltip" title="<?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?>"><i class="icon-remove"></i></button>
 				</div>
 				<div class="btn-group pull-right">
+					<label for="limit" class="element-invisible"><?php echo JText::_('JFIELD_PLG_SEARCH_SEARCHLIMIT_DESC');?></label>
 					<?php echo $this->pagination->getLimitBox(); ?>
 				</div>
 				<div class="btn-group pull-right">
+					<label for="directionTable" class="element-invisible"><?php echo JText::_('JFIELD_ORDERING_DESC');?></label>
 					<select name="directionTable" id="directionTable" class="input-small" onchange="Joomla.orderTable()">
 						<option value=""><?php echo JText::_('JFIELD_ORDERING_DESC');?></option>
 						<option value="asc" <?php if ($listDirn == 'asc') echo 'selected="selected"'; ?>><?php echo JText::_('JGLOBAL_ORDER_ASCENDING');?></option>
@@ -115,6 +124,7 @@ $sortFields = $this->getSortFields();
 					</select>
 				</div>
 				<div class="btn-group pull-right">
+					<label for="sortTable" class="element-invisible"><?php echo JText::_('JGLOBAL_SORT_BY');?></label>
 					<select name="sortTable" id="sortTable" class="input-medium" onchange="Joomla.orderTable()">
 						<option value=""><?php echo JText::_('JGLOBAL_SORT_BY');?></option>
 						<?php echo JHtml::_('select.options', $sortFields, 'value', 'text', $listOrder);?>
