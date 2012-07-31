@@ -59,7 +59,7 @@ $sortFields = $this->getSortFields();
 					}
 				?>
 				<hr />
-				<div class="filter-select">
+				<div class="filter-select hidden-phone">
 					<h4 class="page-header"><?php echo JText::_('JSEARCH_FILTER_LABEL');?></h4>
 					<label for="filter_published" class="element-invisible"><?php echo JText::_('JOPTION_SELECT_PUBLISHED');?></label>
 					<select name="filter_published" id="filter_published" class="span12 small" onchange="this.form.submit()">
@@ -107,15 +107,15 @@ $sortFields = $this->getSortFields();
 					<label for="filter_search" class="element-invisible"><?php echo JText::_('COM_CONTENT_FILTER_SEARCH_DESC');?></label>
 					<input type="text" name="filter_search" placeholder="<?php echo JText::_('COM_CONTENT_FILTER_SEARCH_DESC'); ?>" id="filter_search" value="<?php echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo JText::_('COM_CONTENT_FILTER_SEARCH_DESC'); ?>" />
 				</div>
-				<div class="btn-group pull-left">
+				<div class="btn-group pull-left hidden-phone">
 					<button class="btn tip" type="submit" rel="tooltip" title="<?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?>"><i class="icon-search"></i></button>
 					<button class="btn tip" type="button" onclick="document.id('filter_search').value='';this.form.submit();" rel="tooltip" title="<?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?>"><i class="icon-remove"></i></button>
 				</div>
-				<div class="btn-group pull-right">
+				<div class="btn-group pull-right hidden-phone">
 					<label for="limit" class="element-invisible"><?php echo JText::_('JFIELD_PLG_SEARCH_SEARCHLIMIT_DESC');?></label>
 					<?php echo $this->pagination->getLimitBox(); ?>
 				</div>
-				<div class="btn-group pull-right">
+				<div class="btn-group pull-right hidden-phone">
 					<label for="directionTable" class="element-invisible"><?php echo JText::_('JFIELD_ORDERING_DESC');?></label>
 					<select name="directionTable" id="directionTable" class="input-small" onchange="Joomla.orderTable()">
 						<option value=""><?php echo JText::_('JFIELD_ORDERING_DESC');?></option>
@@ -136,10 +136,10 @@ $sortFields = $this->getSortFields();
 			<table class="table table-striped" id="articleList">
 				<thead>
 					<tr>
-						<th width="1%" class="center" nowrap="nowrap">
+						<th width="1%" class="center hidden-phone" nowrap="nowrap">
 							<i class="icon-menu-2 hasTip" title="<?php echo JText::_('JGRID_HEADING_ORDERING'); ?>"></i>
 						</th>
-						<th width="1%">
+						<th width="1%" class="hidden-phone">
 							<input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
 						</th>
 						<th width="5%" style="min-width:55px" class="center">
@@ -148,19 +148,19 @@ $sortFields = $this->getSortFields();
 						<th>
 							<?php echo JText::_('JGLOBAL_TITLE'); ?>
 						</th>
-						<th width="10%">
+						<th width="10%" class="hidden-phone">
 							<?php echo JText::_('JGRID_HEADING_ACCESS'); ?>
 						</th>
-						<th width="10%">
+						<th width="10%" class="hidden-phone">
 							<?php echo JText::_('JAUTHOR'); ?>
 						</th>
-						<th width="5%">
+						<th width="5%" class="hidden-phone">
 							<?php echo JText::_('JGRID_HEADING_LANGUAGE'); ?>
 						</th>
-						<th width="10%">
+						<th width="10%" class="hidden-phone">
 							<?php echo JText::_('JDATE'); ?>
 						</th>
-						<th width="1%" class="nowrap">
+						<th width="1%" class="nowrap hidden-phone">
 							<?php echo JText::_('JGRID_HEADING_ID'); ?>
 						</th>
 					</tr>
@@ -176,7 +176,7 @@ $sortFields = $this->getSortFields();
 					$canChange	= $user->authorise('core.edit.state',	'com_content.article.'.$item->id) && $canCheckin;
 					?>
 					<tr class="row<?php echo $i % 2; ?>" sortable-group-id="<?php echo $item->catid?>">
-						<td class="order nowrap center">
+						<td class="order nowrap center hidden-phone">
 						<?php if ($canChange) :
 							$disableClassName = '';
 							$disabledLabel	  = '';
@@ -195,7 +195,7 @@ $sortFields = $this->getSortFields();
 							</span>
 						<?php endif; ?>
 						</td>
-						<td class="center">
+						<td class="center hidden-phone">
 							<?php echo JHtml::_('grid.id', $i, $item->id); ?>
 						</td>
 						<td class="center">
@@ -265,23 +265,23 @@ $sortFields = $this->getSortFields();
 							</div>
 
 						</td>
-						<td class="small">
+						<td class="small hidden-phone">
 							<?php echo $this->escape($item->access_level); ?>
 						</td>
-						<td class="small">
+						<td class="small hidden-phone">
 							<?php echo $this->escape($item->author_name); ?>
 						</td>
-						<td class="small">
+						<td class="small hidden-phone">
 							<?php if ($item->language=='*'):?>
 								<?php echo JText::alt('JALL', 'language'); ?>
 							<?php else:?>
 								<?php echo $item->language_title ? $this->escape($item->language_title) : JText::_('JUNDEFINED'); ?>
 							<?php endif;?>
 						</td>
-						<td class="nowrap small">
+						<td class="nowrap small hidden-phone">
 							<?php echo JHtml::_('date', $item->created, JText::_('DATE_FORMAT_LC4')); ?>
 						</td>
-						<td class="center">
+						<td class="center hidden-phone">
 							<?php echo (int) $item->id; ?>
 						</td>
 					</tr>
