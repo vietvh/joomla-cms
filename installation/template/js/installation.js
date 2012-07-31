@@ -23,11 +23,11 @@ var Installation = new Class({
 		$$('form.form-validate').each(function(form){ this.attachToForm(form); }, document.formvalidator);
 
 		if (this.view == 'site' && this.sampleDataLoaded) {
-			var select = document.id('jform_db_old');
+			var select = document.id('jform_sample_file');
 			var button = document.id('theDefault').children[0];
 			button.setAttribute('disabled', 'disabled');
 			select.setAttribute('disabled', 'disabled');
-			button.setAttribute('value', Joomla.JText._('INSTL_SITE_SAMPLE_LOADED', 'Sample Data Installed Successfully.'));
+			button.set('text', Joomla.JText._('INSTL_SITE_SAMPLE_LOADED', 'Sample Data Installed Successfully.'));
 		}
     },
 
@@ -100,6 +100,7 @@ var Installation = new Class({
 				active.removeClass('active');
 				var nextStep = document.id(page);
 				nextStep.addClass('active');
+				initElements();
 			}.bind(this)
 		}).send();
 
@@ -111,7 +112,7 @@ var Installation = new Class({
 	 */
 	sampleData: function(el, filename) {
 		this.busy = true;
-		sample_data_spinner = new Spinner('sample-data-region');
+		sample_data_spinner = new Spinner('collapseSample');
 		sample_data_spinner.show(true);
 		el = document.id(el);
 		filename = document.id(filename);
@@ -129,7 +130,7 @@ var Installation = new Class({
 					Joomla.replaceTokens(r.token);
 					this.sampleDataLoaded = r.data.sampleDataLoaded;
 					if (r.error == false) {
-						el.set('value', Joomla.JText._('INSTL_SITE_SAMPLE_LOADED', 'Sample Data Installed Successfully.'));
+						el.set('text', Joomla.JText._('INSTL_SITE_SAMPLE_LOADED', 'Sample Data Installed Successfully.'));
 						el.set('onclick','');
 						el.set('disabled', 'disabled');
 						filename.set('disabled', 'disabled');
@@ -251,7 +252,7 @@ var Installation = new Class({
 				if (r) {
 					Joomla.replaceTokens(r.token);
 					if (r.error == false) {
-						el.set('value', r.data.text);
+						el.set('text', r.data.text);
 						el.set('onclick','');
 						el.set('disabled', 'disabled');
 					} else {

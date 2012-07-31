@@ -63,7 +63,7 @@ class plgButtonArticle extends JPlugin
 
 		/*
 		 * Use the built-in element view to select the article.
-		 * Currently uses blank class.
+		 * Currently uses newspaper class.
 		 */
 		$link = 'index.php?option=com_content&amp;view=articles&amp;layout=modal&amp;tmpl=component&amp;'.JSession::getFormToken().'=1';
 
@@ -71,8 +71,8 @@ class plgButtonArticle extends JPlugin
 		$button->set('modal', true);
 		$button->set('link', $link);
 		$button->set('text', JText::_('PLG_ARTICLE_BUTTON_ARTICLE'));
-		$button->set('name', 'article');
-		$button->set('options', "{handler: 'iframe', size: {x: 770, y: 400}}");
+		$button->set('name', 'file-add');
+		$button->set('options', "{handler: 'iframe', size: {x: 800, y: 500}}");
 
 		return $button;
 	}
