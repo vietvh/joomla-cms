@@ -5691,7 +5691,6 @@ body .navbar-fixed-top {
   .table td:nth-of-type(n+5),
   .table td:nth-of-type(2),
   .table td:nth-of-type(3) {
-    display: none;
     white-space: normal;
   }
   .pagination a {
