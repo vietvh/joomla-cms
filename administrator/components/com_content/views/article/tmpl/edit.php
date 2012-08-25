@@ -98,9 +98,7 @@ endif;
 							<div class="span6">
 								<h4><?php echo JText::_('COM_CONTENT_FIELDSET_URLS_AND_IMAGES');?></h4>
 								<div class="control-group">
-									<div class="control-label">
-										<?php echo $this->form->getLabel('images'); ?>
-									</div>
+									<?php echo $this->form->getLabel('images'); ?>
 									<div class="controls">
 										<?php echo $this->form->getInput('images'); ?>
 									</div>
@@ -108,9 +106,7 @@ endif;
 								<?php foreach($this->form->getGroup('images') as $field): ?>
 									<div class="control-group">
 										<?php if (!$field->hidden): ?>
-											<div class="control-label">
-												<?php echo $field->label; ?>
-											</div>
+											<?php echo $field->label; ?>
 										<?php endif; ?>
 										<div class="controls">
 											<?php echo $field->input; ?>
@@ -122,9 +118,7 @@ endif;
 								<?php foreach($this->form->getGroup('urls') as $field): ?>
 									<div class="control-group">
 										<?php if (!$field->hidden): ?>
-											<div class="control-label">
 												<?php echo $field->label; ?>
-											</div>
 										<?php endif; ?>
 										<div class="controls">
 											<?php echo $field->input; ?>
@@ -142,41 +136,31 @@ endif;
 							<div class="row-fluid">
 								<div class="span6">
 									<div class="control-group">
-										<div class="control-label">
-											<?php echo $this->form->getLabel('alias'); ?>
-										</div>
+										<?php echo $this->form->getLabel('alias'); ?>
 										<div class="controls">
 											<?php echo $this->form->getInput('alias'); ?>
 										</div>
 									</div>
 									<div class="control-group">
-										<div class="control-label">
-											<?php echo $this->form->getLabel('id'); ?>
-										</div>
+										<?php echo $this->form->getLabel('id'); ?>
 										<div class="controls">
 											<?php echo $this->form->getInput('id'); ?>
 										</div>
 									</div>
 									<div class="control-group">
-										<div class="control-label">
-											<?php echo $this->form->getLabel('created_by'); ?>
-										</div>
+										<?php echo $this->form->getLabel('created_by'); ?>
 										<div class="controls">
 											<?php echo $this->form->getInput('created_by'); ?>
 										</div>
 									</div>
 									<div class="control-group">
-										<div class="control-label">
-											<?php echo $this->form->getLabel('created_by_alias'); ?>
-										</div>
+										<?php echo $this->form->getLabel('created_by_alias'); ?>
 										<div class="controls">
 											<?php echo $this->form->getInput('created_by_alias'); ?>
 										</div>
 									</div>
 									<div class="control-group">
-										<div class="control-label">
-											<?php echo $this->form->getLabel('created'); ?>
-										</div>
+										<?php echo $this->form->getLabel('created'); ?>
 										<div class="controls">
 											<?php echo $this->form->getInput('created'); ?>
 										</div>
@@ -184,34 +168,26 @@ endif;
 								</div>
 								<div class="span6">
 									<div class="control-group">
-										<div class="control-label">
-											<?php echo $this->form->getLabel('publish_up'); ?>
-										</div>
+										<?php echo $this->form->getLabel('publish_up'); ?>
 										<div class="controls">
 											<?php echo $this->form->getInput('publish_up'); ?>
 										</div>
 									</div>
 									<div class="control-group">
-										<div class="control-label">
-											<?php echo $this->form->getLabel('publish_down'); ?>
-										</div>
+										<?php echo $this->form->getLabel('publish_down'); ?>
 										<div class="controls">
 											<?php echo $this->form->getInput('publish_down'); ?>
 										</div>
 									</div>
 									<?php if ($this->item->modified_by) : ?>
 										<div class="control-group">
-											<div class="control-label">
-												<?php echo $this->form->getLabel('modified_by'); ?>
-											</div>
+											<?php echo $this->form->getLabel('modified_by'); ?>
 											<div class="controls">
 												<?php echo $this->form->getInput('modified_by'); ?>
 											</div>
 										</div>
 										<div class="control-group">
-											<div class="control-label">
-												<?php echo $this->form->getLabel('modified'); ?>
-											</div>
+											<?php echo $this->form->getLabel('modified'); ?>
 											<div class="controls">
 												<?php echo $this->form->getInput('modified'); ?>
 											</div>
@@ -220,9 +196,7 @@ endif;
 
 									<?php if ($this->item->version) : ?>
 										<div class="control-group">
-											<div class="control-label">
-												<?php echo $this->form->getLabel('version'); ?>
-											</div>
+											<?php echo $this->form->getLabel('version'); ?>
 											<div class="controls">
 												<?php echo $this->form->getInput('version'); ?>
 											</div>
@@ -231,9 +205,7 @@ endif;
 
 									<?php if ($this->item->hits) : ?>
 										<div class="control-group">
-											<div class="control-label">
-												<?php echo $this->form->getLabel('hits'); ?>
-											</div>
+											<?php echo $this->form->getLabel('hits'); ?>
 											<div class="controls">
 												<?php echo $this->form->getInput('hits'); ?>
 											</div>
@@ -260,9 +232,7 @@ endif;
 										<?php endif;
 										foreach ($this->form->getFieldset($name) as $field) : ?>
 											<div class="control-group">
-												<div class="control-label">
-													<?php echo $field->label; ?>
-												</div>
+												<?php echo $field->label; ?>
 												<div class="controls">
 													<?php echo $field->input; ?>
 												</div>
@@ -285,9 +255,7 @@ endif;
 						<div class="tab-pane" id="editor">
 							<?php foreach ($this->form->getFieldset('editorConfig') as $field) : ?>
 								<div class="control-group">
-									<div class="control-label">
-										<?php echo $field->label; ?>
-									</div>
+									<?php echo $field->label; ?>
 									<div class="controls">
 										<?php echo $field->input; ?>
 									</div>
@@ -322,34 +290,26 @@ endif;
 			<hr />
 			<fieldset class="form-vertical">
 				<div class="control-group">
-					<div class="control-label">
-						<?php echo $this->form->getLabel('state'); ?>
-					</div>
+					<?php echo $this->form->getLabel('state'); ?>
 					<div class="controls">
 						<?php echo $this->form->getInput('state'); ?>
 					</div>
 				</div>
 
 				<div class="control-group">
-					<div class="control-label">
-						<?php echo $this->form->getLabel('access'); ?>
-					</div>
+					<?php echo $this->form->getLabel('access'); ?>
 					<div class="controls">
 						<?php echo $this->form->getInput('access'); ?>
 					</div>
 				</div>
 				<div class="control-group">
-					<div class="control-label">
-						<?php echo $this->form->getLabel('featured'); ?>
-					</div>
+					<?php echo $this->form->getLabel('featured'); ?>
 					<div class="controls">
 						<?php echo $this->form->getInput('featured'); ?>
 					</div>
 				</div>
 				<div class="control-group">
-					<div class="control-label">
-						<?php echo $this->form->getLabel('language'); ?>
-					</div>
+					<?php echo $this->form->getLabel('language'); ?>
 					<div class="controls">
 						<?php echo $this->form->getInput('language'); ?>
 					</div>
