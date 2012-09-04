@@ -82,7 +82,7 @@ else
 	<?php
 	}
 	?>
-	<script src="<?php echo $this->baseurl; ?>/media/jui/js/jquery.js"></script>
+	<script src="<?php echo $this->baseurl; ?>/media/jui/js/jquery.min.js"></script>
 	<script src="<?php echo $this->baseurl; ?>/media/jui/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 	  jQuery.noConflict();
@@ -97,6 +97,7 @@ else
 		body.site
 		{
 			border-top: 3px solid <?php echo $this->params->get('templateColor');?>;
+			background-color: <?php echo $this->params->get('templateBackgroundColor');?>
 		}
 		a
 		{

@@ -636,8 +636,7 @@
 				labelclass="control-label"/>
 			<field
 				name="float_fulltext"
-				type="radio"
-				class="btn-group"
+				type="list"
 				label="COM_CONTENT_FLOAT_LABEL"
 				description="COM_CONTENT_FLOAT_DESC"
 				labelclass="control-label">
