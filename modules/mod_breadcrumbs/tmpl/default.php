@@ -45,6 +45,6 @@ defined('_JEXEC') or die;
 		echo $list[$i]->name;
 		echo '</span>';
 	}
-	echo '<li>';
+	echo '</li>';
 endfor; ?>
 </ul>
