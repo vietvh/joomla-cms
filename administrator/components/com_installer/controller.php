@@ -31,6 +31,8 @@ class InstallerController extends JControllerLegacy
 	{
 		require_once JPATH_ADMINISTRATOR . '/components/com_installer/helpers/installer.php';
 
+		JHtml::_('jquery.chosen');
+
 		// Get the document object.
 		$document = JFactory::getDocument();
 

@@ -31,6 +31,8 @@ class PluginsController extends JControllerLegacy
 	{
 		require_once JPATH_COMPONENT.'/helpers/plugins.php';
 
+		JHtml::_('jquery.chosen');
+
 		// Load the submenu.
 		PluginsHelper::addSubmenu($this->input->get('view', 'plugins'));
 

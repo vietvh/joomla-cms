@@ -31,6 +31,8 @@ class LoginController extends JControllerLegacy
 	 */
 	public function display($cachable = false, $urlparams = false)
 	{
+		JHtml::_('jquery.chosen');
+
 		// Special treatment is required for this component, as this view may be called
 		// after a session timeout. We must reset the view and layout prior to display
 		// otherwise an error will occur.

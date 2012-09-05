@@ -31,6 +31,8 @@ class MessagesController extends JControllerLegacy
 	{
 		require_once JPATH_COMPONENT.'/helpers/messages.php';
 
+		JHtml::_('jquery.chosen');
+
 		$view   = $this->input->get('view', 'messages');
 		$layout = $this->input->get('layout', 'default');
 		$id     = $this->input->getInt('id');

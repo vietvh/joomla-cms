@@ -36,6 +36,8 @@ class ContactController extends JControllerLegacy
 	{
 		require_once JPATH_COMPONENT.'/helpers/contact.php';
 
+		JHtml::_('jquery.chosen');
+
 		$view   = $this->input->get('view', 'contacts');
 		$layout = $this->input->get('layout', 'default');
 		$id     = $this->input->getInt('id');

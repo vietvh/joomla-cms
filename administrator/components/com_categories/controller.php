@@ -52,6 +52,8 @@ class CategoriesController extends JControllerLegacy
 	 */
 	public function display($cachable = false, $urlparams = false)
 	{
+		JHtml::_('jquery.chosen');
+
 		// Get the document object.
 		$document = JFactory::getDocument();
 

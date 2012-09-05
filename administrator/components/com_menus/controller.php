@@ -31,6 +31,8 @@ class MenusController extends JControllerLegacy
 	{
 		require_once JPATH_COMPONENT.'/helpers/menus.php';
 
+		JHtml::_('jquery.chosen');
+
 		$view   = $this->input->get('view', 'menus');
 		$layout = $this->input->get('layout', 'default');
 		$id     = $this->input->getInt('id');

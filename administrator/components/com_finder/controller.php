@@ -38,6 +38,8 @@ class FinderController extends JControllerLegacy
 	{
 		include_once JPATH_COMPONENT . '/helpers/finder.php';
 
+		JHtml::_('jquery.chosen');
+
 		$view   = $this->input->get('view', 'index', 'word');
 		$layout = $this->input->get('layout', 'index', 'word');
 		$f_id   = $this->input->get('filter_id', null, 'int');

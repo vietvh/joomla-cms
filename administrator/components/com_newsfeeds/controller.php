@@ -31,6 +31,8 @@ class NewsfeedsController extends JControllerLegacy
 	{
 		require_once JPATH_COMPONENT.'/helpers/newsfeeds.php';
 
+		JHtml::_('jquery.chosen');
+
 		$view   = $this->input->get('view', 'newsfeeds');
 		$layout = $this->input->get('layout', 'default');
 		$id     = $this->input->getInt('id');

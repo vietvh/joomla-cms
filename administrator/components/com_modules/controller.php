@@ -31,6 +31,8 @@ class ModulesController extends JControllerLegacy
 	{
 		require_once JPATH_COMPONENT.'/helpers/modules.php';
 
+		JHtml::_('jquery.chosen');
+
 		// Load the submenu.
 		ModulesHelper::addSubmenu($this->input->get('view', 'modules'));
 

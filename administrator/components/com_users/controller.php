@@ -57,6 +57,8 @@ class UsersController extends JControllerLegacy
 	 */
 	public function display($cachable = false, $urlparams = false)
 	{
+		JHtml::_('jquery.chosen');
+
 		$view   = $this->input->get('view', 'users');
 		$layout = $this->input->get('layout', 'default');
 		$id     = $this->input->getInt('id');
