@@ -29,8 +29,6 @@ class CacheController extends JControllerLegacy
 	{
 		require_once JPATH_COMPONENT.'/helpers/cache.php';
 
-		JHtml::_('jquery.chosen');
-
 		// Get the document object.
 		$document = JFactory::getDocument();
 

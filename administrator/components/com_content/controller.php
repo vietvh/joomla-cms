@@ -36,8 +36,6 @@ class ContentController extends JControllerLegacy
 	 */
 	public function display($cachable = false, $urlparams = false)
 	{
-		JHtml::_('jquery.chosen');
-
 		$view   = $this->input->get('view', 'articles');
 		$layout = $this->input->get('layout', 'articles');
 		$id     = $this->input->getInt('id');

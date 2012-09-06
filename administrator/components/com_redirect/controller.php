@@ -37,8 +37,6 @@ class RedirectController extends JControllerLegacy
 	{
 		require_once JPATH_COMPONENT.'/helpers/redirect.php';
 
-		JHtml::_('jquery.chosen');
-
 		// Load the submenu.
 		RedirectHelper::addSubmenu($this->input->get('view', 'links'));
 

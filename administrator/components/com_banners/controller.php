@@ -32,8 +32,6 @@ class BannersController extends JControllerLegacy
 		require_once JPATH_COMPONENT.'/helpers/banners.php';
 		BannersHelper::updateReset();
 
-		JHtml::_('jquery.chosen');
-
 		$view   = $this->input->get('view', 'banners');
 		$layout = $this->input->get('layout', 'default');
 		$id     = $this->input->getInt('id');

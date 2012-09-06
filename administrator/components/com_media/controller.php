@@ -29,8 +29,6 @@ class MediaController extends JControllerLegacy
 	 */
 	public function display($cachable = false, $urlparams = false)
 	{
-		JHtml::_('jquery.chosen');
-
 		JPluginHelper::importPlugin('content');
 		$vName = $this->input->get('view', 'media');
 		switch ($vName)
