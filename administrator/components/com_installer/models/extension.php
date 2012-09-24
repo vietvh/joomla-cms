@@ -71,14 +71,16 @@ class InstallerModel extends JModelList
 					}
 				}
 			}
-			JArrayHelper::sortObjects($result, $this->getState('list.ordering'), $this->getState('list.direction') == 'desc' ? -1 : 1, true, $lang->getLocale());
+
 			$total = count($result);
 			$this->cache[$this->getStoreId('getTotal')] = $total;
 			if ($total < $limitstart) {
 				$limitstart = 0;
 				$this->setState('list.start', 0);
 			}
-			return array_slice($result, $limitstart, $limit ? $limit : null);
+			$result = array_slice($result, $limitstart, $limit ? $limit : null);
+			JArrayHelper::sortObjects($result, $this->getState('list.ordering'), $this->getState('list.direction') == 'desc' ? -1 : 1, true, $lang->getLocale());
+			return $result;
 		} else {
 			$query->order($db->quoteName($ordering) . ' ' . $this->getState('list.direction'));
 			$result = parent::_getList($query, $limitstart, $limit);
